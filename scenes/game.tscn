@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://6eskilvv7o4y"]
+[gd_scene load_steps=4 format=3 uid="uid://6eskilvv7o4y"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_wcxds"]
 [ext_resource type="PackedScene" uid="uid://b07gbbjojviw7" path="res://scenes/player.tscn" id="2_dygiw"]
-[ext_resource type="PackedScene" uid="uid://bol1qc50pqq8t" path="res://scenes/laser.tscn" id="3_4i0s5"]
 [ext_resource type="PackedScene" uid="uid://bunsdh1flr7la" path="res://scenes/meteor.tscn" id="4_ot7am"]
 
 [node name="Game" type="Node2D"]
@@ -14,10 +13,22 @@ position = Vector2(270, 850)
 [node name="PlayerSpawnPosition" type="Marker2D" parent="."]
 position = Vector2(270, 850)
 
-[node name="Laser" parent="." instance=ExtResource("3_4i0s5")]
-position = Vector2(164, 928)
-
 [node name="LaserContainer" type="Node2D" parent="."]
 
 [node name="Meteor" parent="." instance=ExtResource("4_ot7am")]
-position = Vector2(272, 88)
+position = Vector2(254, 87)
+
+[node name="Meteor5" parent="." instance=ExtResource("4_ot7am")]
+position = Vector2(422, -431)
+
+[node name="Meteor6" parent="." instance=ExtResource("4_ot7am")]
+position = Vector2(146, -749)
+
+[node name="Meteor2" parent="." instance=ExtResource("4_ot7am")]
+position = Vector2(59, -43)
+
+[node name="Meteor3" parent="." instance=ExtResource("4_ot7am")]
+position = Vector2(401, 44)
+
+[node name="Meteor4" parent="." instance=ExtResource("4_ot7am")]
+position = Vector2(245, -187)
