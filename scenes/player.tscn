@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://b07gbbjojviw7"]
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
