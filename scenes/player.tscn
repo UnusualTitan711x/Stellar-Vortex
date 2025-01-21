@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://kt0c4fffx8dp" path="res://assets/kenney_space-shooter-redux/PNG/playerShip1_blue.png" id="2_wgpt7"]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_axc1m")
 
