@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var speed = 300
+@export var fire_rate := 0.25
 
 # In a signal like laser_shot(a, b), a and b are like information you want passed with the seignal
 signal laser_shot(laser_scene, location)
@@ -9,9 +10,15 @@ var laser_scene = preload("res://scenes/laser.tscn")
 
 @onready var muzzle = $Muzzle
 
+var shoot_cooldown := false
+
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("shoot"):
-		shoot()
+	if Input.is_action_pressed("shoot"):
+		if !shoot_cooldown:
+			shoot_cooldown = true
+			shoot()
+			await get_tree().create_timer(fire_rate).timeout
+			shoot_cooldown = false
 
 # _physics_process is used when dealing with physics calculations in Godot
 func _physics_process(delta: float) -> void:
