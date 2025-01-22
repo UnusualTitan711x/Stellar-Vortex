@@ -58,7 +58,7 @@ func _process(_delta):
 		get_tree().reload_current_scene()
 	
 	if spawn_timer.wait_time > 0.5:
-		spawn_timer.wait_time -= _delta * 0.05
+		spawn_timer.wait_time -= _delta * 0.005
 	elif spawn_timer.wait_time < 0.5:
 		spawn_timer.wait_time = 0.5
 	print(spawn_timer.wait_time)
