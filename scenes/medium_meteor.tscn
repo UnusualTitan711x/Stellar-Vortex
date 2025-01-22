@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bymmwm57ure34"]
+
+[ext_resource type="PackedScene" uid="uid://bunsdh1flr7la" path="res://scenes/meteor.tscn" id="1_lgfb5"]
+[ext_resource type="Texture2D" uid="uid://fmo7oab03nlt" path="res://assets/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_med1.png" id="2_yyrt5"]
+
+[node name="Meteor" instance=ExtResource("1_lgfb5")]
+speed = 280
+hp = 1
+points = 10
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_yyrt5")
+
+[node name="CollisionShape2D" parent="." index="1"]
+scale = Vector2(0.5, 0.5)

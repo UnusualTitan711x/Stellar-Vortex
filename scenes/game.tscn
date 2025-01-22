@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://6eskilvv7o4y"]
+[gd_scene load_steps=5 format=3 uid="uid://6eskilvv7o4y"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_wcxds"]
 [ext_resource type="PackedScene" uid="uid://b07gbbjojviw7" path="res://scenes/player.tscn" id="2_dygiw"]
+[ext_resource type="PackedScene" uid="uid://bymmwm57ure34" path="res://scenes/medium_meteor.tscn" id="4_fpq8u"]
 [ext_resource type="PackedScene" uid="uid://bunsdh1flr7la" path="res://scenes/meteor.tscn" id="4_ot7am"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_wcxds")
+enemy_scenes = Array[PackedScene]([ExtResource("4_ot7am"), ExtResource("4_fpq8u")])
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+autostart = true
 
 [node name="Player" parent="." instance=ExtResource("2_dygiw")]
 position = Vector2(270, 850)
@@ -15,20 +20,6 @@ position = Vector2(270, 850)
 
 [node name="LaserContainer" type="Node2D" parent="."]
 
-[node name="Meteor" parent="." instance=ExtResource("4_ot7am")]
-position = Vector2(254, 87)
+[node name="EnemyContainer" type="Node2D" parent="."]
 
-[node name="Meteor5" parent="." instance=ExtResource("4_ot7am")]
-position = Vector2(422, -431)
-
-[node name="Meteor6" parent="." instance=ExtResource("4_ot7am")]
-position = Vector2(146, -749)
-
-[node name="Meteor2" parent="." instance=ExtResource("4_ot7am")]
-position = Vector2(59, -43)
-
-[node name="Meteor3" parent="." instance=ExtResource("4_ot7am")]
-position = Vector2(401, 44)
-
-[node name="Meteor4" parent="." instance=ExtResource("4_ot7am")]
-position = Vector2(245, -187)
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

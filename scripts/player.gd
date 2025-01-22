@@ -33,6 +33,8 @@ func _physics_process(delta: float) -> void:
 	# This actually uses the velocity to make the player move.
 	# The player doesn't just move by changing the velocity
 	move_and_slide()
+	
+	global_position  = global_position.clamp(Vector2.ZERO, get_viewport_rect().size)
 
 func shoot():
 	laser_shot.emit(laser_scene, muzzle.global_position)

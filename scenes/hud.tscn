@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://de0fsajx48dm3"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_6q7gl"]
+[ext_resource type="FontFile" uid="uid://dgooqrs37y3ro" path="res://assets/kenney_space-shooter-redux/Bonus/kenvector_future.ttf" id="2_ye80m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x8r83"]
+font = ExtResource("2_ye80m")
+font_size = 48
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6q7gl")
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "SCORE: 00000"
+label_settings = SubResource("LabelSettings_x8r83")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -3,6 +3,11 @@ extends Node2D
 var player = null
 @onready var player_spawn_pos = $PlayerSpawnPosition
 @onready var laser_container = $LaserContainer
+@onready var enemy_container = $EnemyContainer
+
+@export var score := 0
+
+@export var enemy_scenes: Array[PackedScene] = []
 
 # _ready() is called at the start of the game.
 func _ready() -> void:
@@ -27,3 +32,14 @@ func _on_player_laser_shot(laser_scene, location):
 	var laser = laser_scene.instantiate()
 	laser.global_position = location
 	laser_container.add_child(laser)
+
+
+func _on_enemy_spawn_timer_timeout() -> void:
+	var enemy = enemy_scenes.pick_random().instantiate()
+	enemy.global_position = Vector2(randf_range(30, 510), -20)
+	enemy.killed.connect(_on_enemy_killed)
+	enemy_container.add_child(enemy)
+
+func _on_enemy_killed(points):
+	score += points
+	print(score)
