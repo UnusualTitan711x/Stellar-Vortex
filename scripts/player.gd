@@ -3,6 +3,8 @@ class_name Player extends CharacterBody2D
 @export var speed = 300
 @export var fire_rate := 0.25
 
+signal killed
+
 # In a signal like laser_shot(a, b), a and b are like information you want passed with the seignal
 signal laser_shot(laser_scene, location)
 
@@ -40,4 +42,5 @@ func shoot():
 	laser_shot.emit(laser_scene, muzzle.global_position)
 	
 func die():
+	killed.emit()
 	queue_free()
