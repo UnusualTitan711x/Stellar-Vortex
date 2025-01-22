@@ -4,13 +4,22 @@ var player = null
 @onready var player_spawn_pos = $PlayerSpawnPosition
 @onready var laser_container = $LaserContainer
 @onready var enemy_container = $EnemyContainer
+@onready var hud = $UILayer/HUD
 
-@export var score := 0
+@export var score := 0:
+	set(value):
+		score = value
+		hud.score = score 
+# This takes away the hassle of going into the script somwehere and updating the display
+# This does it automatically
 
 @export var enemy_scenes: Array[PackedScene] = []
 
 # _ready() is called at the start of the game.
 func _ready() -> void:
+	# Whenever I set the score, it always take the formatting I made when creating score. Nice!
+	hud.score = 0
+	
 	# This basically makes the player accessible everywhere
 	# Another approach is by doing @onready var player = $Player 
 	player = get_tree().get_first_node_in_group("player")
