@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt8trj4lflmnx"]
+
+[ext_resource type="Texture2D" uid="uid://s3lxnq0fs48r" path="res://assets/kenney_space-shooter-redux/PNG/Enemies/enemyRed4.png" id="1_4qyvt"]
+[ext_resource type="Script" path="res://scripts/enemy_spaceship.gd" id="1_kkaul"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6i3rv"]
+radius = 38.3275
+
+[node name="EnemySpaceship" type="Area2D"]
+scale = Vector2(0.7, 0.7)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_kkaul")
+hp = 6
+points = 50
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4qyvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6i3rv")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(0, 68.5714)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

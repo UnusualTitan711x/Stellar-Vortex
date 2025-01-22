@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bunsdh1flr7la"]
 
-[ext_resource type="Script" path="res://scripts/meteor.gd" id="1_vfb63"]
+[ext_resource type="Script" path="res://scripts/meteor.gd" id="1_yj362"]
 [ext_resource type="Texture2D" uid="uid://dd5e38h4r2iic" path="res://assets/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_big3.png" id="2_yduyd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m8xl1"]
@@ -9,7 +9,7 @@ radius = 44.2832
 [node name="Meteor" type="Area2D"]
 collision_layer = 2
 collision_mask = 5
-script = ExtResource("1_vfb63")
+script = ExtResource("1_yj362")
 speed = 200
 points = 30
 

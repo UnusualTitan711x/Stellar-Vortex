@@ -3,13 +3,17 @@ extends Node2D
 var player = null
 @onready var player_spawn_pos = $PlayerSpawnPosition
 @onready var laser_container = $LaserContainer
+@onready var bullet_container = $LaserContainerE
 @onready var enemy_container = $EnemyContainer
+@onready var s_point_container = $SpawnPointContainer
 @onready var spawn_timer = $EnemySpawnTimer
 @onready var hud = $UILayer/HUD
 @onready var game_over_screen = $UILayer/GameOverScreen
 @onready var parallax_bg = $ParallaxBackground
+@onready var ss_timer = $SpaceshipSpawnTimer
 
 @onready var laser_sound = $SFX/LaserSound
+@onready var laser_sound_2 = $SFX/LaserSound2
 @onready var hit_sound = $SFX/HitSound
 @onready var explode_sound = $SFX/ExplodeSound
 
@@ -18,11 +22,12 @@ var score := 0:
 		score = value
 		hud.score = score 
 var high_score
-
+var spawn_points
 var scroll_speed = 100
 # This takes away the hassle of going into the script somwehere and updating the display
 # This does it automatically. Cool
 
+@export var meteor_scenes: Array[PackedScene] = []
 @export var enemy_scenes: Array[PackedScene] = []
 
 # _ready() is called at the start of the game.
@@ -37,8 +42,12 @@ func _ready() -> void:
 		high_score = 0
 		save_game()
 	
+	
 	# Whenever I set the score, it always take the formatting I made when creating score. Nice!
 	score = 0
+	
+	spawn_points = s_point_container.get_children()
+	print(spawn_points.size)
 	
 	# This basically makes the player accessible everywhere
 	# Another approach is by doing @onready var player = $Player 
@@ -65,7 +74,7 @@ func _process(delta):
 		get_tree().reload_current_scene()
 	
 	if spawn_timer.wait_time > 0.4:
-		spawn_timer.wait_time -= delta * 0.02
+		spawn_timer.wait_time -= delta * 0.03
 	elif spawn_timer.wait_time < 0.4:
 		spawn_timer.wait_time = 0.4
 	
@@ -82,7 +91,7 @@ func _on_player_laser_shot(laser_scene, location):
 
 
 func _on_enemy_spawn_timer_timeout() -> void:
-	var enemy = enemy_scenes.pick_random().instantiate()
+	var enemy = meteor_scenes.pick_random().instantiate()
 	enemy.global_position = Vector2(randf_range(30, 510), -20)
 	enemy.killed.connect(_on_enemy_killed)
 	enemy.hit.connect(_on_enemy_hit)
@@ -104,3 +113,18 @@ func _on_player_killed():
 	save_game()
 	await get_tree().create_timer(1).timeout
 	game_over_screen.visible = true
+
+
+func _on_spaceship_spawn_timer_timeout() -> void:
+	var enemy = enemy_scenes.pick_random().instantiate()
+	enemy.global_position = spawn_points.pick_random().global_position
+	enemy.killed.connect(_on_enemy_killed)
+	enemy.hit.connect(_on_enemy_hit)
+	enemy_container.add_child(enemy)
+	enemy.bullet_shot.connect(_on_enemy_bullet_shot)
+
+func _on_enemy_bullet_shot(bullet_scene, location):
+	laser_sound_2.play()
+	var bullet = bullet_scene.instantiate()
+	bullet.global_position = location
+	bullet_container.add_child(bullet)

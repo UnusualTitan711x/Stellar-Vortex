@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://chlmcv713heyw"]
+
+[ext_resource type="Texture2D" uid="uid://de3mexywberol" path="res://assets/kenney_space-shooter-redux/PNG/Lasers/laserRed11.png" id="1_crhoo"]
+[ext_resource type="Script" path="res://scripts/enemy_bullet.gd" id="1_tdml0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_novac"]
+radius = 20.025
+
+[node name="EnemyBullet" type="Area2D"]
+scale = Vector2(0.6, 0.6)
+collision_layer = 4
+script = ExtResource("1_tdml0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_crhoo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_novac")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -51.6667)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

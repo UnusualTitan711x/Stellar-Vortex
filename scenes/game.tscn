@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://6eskilvv7o4y"]
+[gd_scene load_steps=15 format=3 uid="uid://6eskilvv7o4y"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_wcxds"]
 [ext_resource type="PackedScene" uid="uid://b07gbbjojviw7" path="res://scenes/player.tscn" id="2_dygiw"]
 [ext_resource type="AudioStream" uid="uid://bp348y64x5tgu" path="res://assets/kenney_space-shooter-redux/Bonus/laserSmall_002.ogg" id="4_7x2ai"]
 [ext_resource type="PackedScene" uid="uid://bymmwm57ure34" path="res://scenes/medium_meteor.tscn" id="4_fpq8u"]
+[ext_resource type="AudioStream" uid="uid://ck7it7ugqs1gc" path="res://assets/kenney_space-shooter-redux/Bonus/sfx_laser2.ogg" id="4_llk47"]
 [ext_resource type="PackedScene" uid="uid://bunsdh1flr7la" path="res://scenes/meteor.tscn" id="4_ot7am"]
 [ext_resource type="Texture2D" uid="uid://kc5tv8fkq4v8" path="res://assets/kenney_space-shooter-redux/Backgrounds/black.png" id="4_sip4m"]
 [ext_resource type="PackedScene" uid="uid://de0fsajx48dm3" path="res://scenes/hud.tscn" id="4_ulxub"]
@@ -11,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://svh5vkmdl6yo" path="res://assets/kenney_space-shooter-redux/Bonus/hitHurt.wav" id="5_oaca7"]
 [ext_resource type="AudioStream" uid="uid://b2fw0ptvfsoco" path="res://assets/kenney_space-shooter-redux/Bonus/explosionCrunch_000.ogg" id="6_6erkd"]
 [ext_resource type="Texture2D" uid="uid://c66d2e5cvb6rv" path="res://assets/kenney_space-shooter-redux/Bonus/bitmap.png" id="8_55s28"]
+[ext_resource type="PackedScene" uid="uid://dt8trj4lflmnx" path="res://scenes/enemy_spaceship.tscn" id="12_3eo8v"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vcr1u"]
 particle_flag_disable_z = true
@@ -26,12 +28,16 @@ scale_max = 0.5
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_wcxds")
-enemy_scenes = Array[PackedScene]([ExtResource("4_ot7am"), ExtResource("4_fpq8u")])
+meteor_scenes = Array[PackedScene]([ExtResource("4_fpq8u"), ExtResource("4_ot7am")])
+enemy_scenes = Array[PackedScene]([ExtResource("12_3eo8v")])
 
 [node name="SFX" type="Node" parent="."]
 
 [node name="LaserSound" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("4_7x2ai")
+
+[node name="LaserSound2" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("4_llk47")
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("5_oaca7")
@@ -62,6 +68,10 @@ visible = false
 wait_time = 2.0
 autostart = true
 
+[node name="SpaceshipSpawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [node name="Player" parent="." instance=ExtResource("2_dygiw")]
 position = Vector2(270, 850)
 
@@ -69,6 +79,8 @@ position = Vector2(270, 850)
 position = Vector2(270, 850)
 
 [node name="LaserContainer" type="Node2D" parent="."]
+
+[node name="LaserContainerE" type="Node2D" parent="."]
 
 [node name="EnemyContainer" type="Node2D" parent="."]
 
@@ -83,4 +95,25 @@ trail_lifetime = 0.02
 trail_sections = 2
 trail_section_subdivisions = 1
 
+[node name="SpawnPointContainer" type="Node2D" parent="."]
+
+[node name="SpawnPoint" type="Marker2D" parent="SpawnPointContainer"]
+position = Vector2(73, -20)
+
+[node name="SpawnPoint2" type="Marker2D" parent="SpawnPointContainer"]
+position = Vector2(171, -20)
+
+[node name="SpawnPoint3" type="Marker2D" parent="SpawnPointContainer"]
+position = Vector2(247, -20)
+
+[node name="SpawnPoint4" type="Marker2D" parent="SpawnPointContainer"]
+position = Vector2(324, -20)
+
+[node name="SpawnPoint5" type="Marker2D" parent="SpawnPointContainer"]
+position = Vector2(414, -20)
+
+[node name="SpawnPoint6" type="Marker2D" parent="SpawnPointContainer"]
+position = Vector2(498, -20)
+
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="SpaceshipSpawnTimer" to="." method="_on_spaceship_spawn_timer_timeout"]
