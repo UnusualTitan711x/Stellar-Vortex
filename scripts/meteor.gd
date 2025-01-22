@@ -7,6 +7,7 @@ class_name Enemy extends Area2D
 # If you want to emit a signal, you could do emit_signal("signal_name")
 # Otherwise, you can go the way of creating a signal then emitting it somwhere else
 signal killed
+signal hit
 
 func _physics_process(delta: float) -> void:
 	global_position.y += speed * delta
@@ -24,6 +25,8 @@ func take_damage(amount):
 	hp -= amount
 	if hp <=0:
 		die()
+	else:
+		hit.emit()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:

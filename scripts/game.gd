@@ -9,6 +9,10 @@ var player = null
 @onready var game_over_screen = $UILayer/GameOverScreen
 @onready var parallax_bg = $ParallaxBackground
 
+@onready var laser_sound = $SFX/LaserSound
+@onready var hit_sound = $SFX/HitSound
+@onready var explode_sound = $SFX/ExplodeSound
+
 var score := 0:
 	set(value):
 		score = value
@@ -71,6 +75,7 @@ func _process(delta):
 		parallax_bg.scroll_offset.y = 0
 
 func _on_player_laser_shot(laser_scene, location):
+	laser_sound.play()
 	var laser = laser_scene.instantiate()
 	laser.global_position = location
 	laser_container.add_child(laser)
@@ -80,14 +85,20 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	var enemy = enemy_scenes.pick_random().instantiate()
 	enemy.global_position = Vector2(randf_range(30, 510), -20)
 	enemy.killed.connect(_on_enemy_killed)
+	enemy.hit.connect(_on_enemy_hit)
 	enemy_container.add_child(enemy)
 
+func _on_enemy_hit():
+	hit_sound.play()
+
 func _on_enemy_killed(points):
+	hit_sound.play()
 	score += points
 	if score > high_score:
 		high_score = score
 
 func _on_player_killed():
+	explode_sound.play()
 	game_over_screen.set_score(score)
 	game_over_screen.set_high_score(high_score)
 	save_game()
