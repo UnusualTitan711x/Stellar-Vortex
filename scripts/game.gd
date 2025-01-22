@@ -7,12 +7,15 @@ var player = null
 @onready var spawn_timer = $EnemySpawnTimer
 @onready var hud = $UILayer/HUD
 @onready var game_over_screen = $UILayer/GameOverScreen
+@onready var parallax_bg = $ParallaxBackground
 
 var score := 0:
 	set(value):
 		score = value
 		hud.score = score 
 var high_score
+
+var scroll_speed = 100
 # This takes away the hassle of going into the script somwehere and updating the display
 # This does it automatically. Cool
 
@@ -51,17 +54,21 @@ func save_game():
 	save_file.store_32(high_score)
 
 # Process works every frame. Similar to Update() in Unity
-func _process(_delta):
+func _process(delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 	
 	if spawn_timer.wait_time > 0.5:
-		spawn_timer.wait_time -= _delta * 0.005
+		spawn_timer.wait_time -= delta * 0.005
 	elif spawn_timer.wait_time < 0.5:
 		spawn_timer.wait_time = 0.5
-	print(spawn_timer.wait_time)
+	
+	parallax_bg.scroll_offset.y += delta * scroll_speed
+	
+	if parallax_bg.scroll_offset.y >= 960:
+		parallax_bg.scroll_offset.y = 0
 
 func _on_player_laser_shot(laser_scene, location):
 	var laser = laser_scene.instantiate()

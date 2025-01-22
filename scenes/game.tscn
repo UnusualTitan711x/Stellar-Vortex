@@ -1,15 +1,41 @@
-[gd_scene load_steps=7 format=3 uid="uid://6eskilvv7o4y"]
+[gd_scene load_steps=10 format=3 uid="uid://6eskilvv7o4y"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_wcxds"]
 [ext_resource type="PackedScene" uid="uid://b07gbbjojviw7" path="res://scenes/player.tscn" id="2_dygiw"]
 [ext_resource type="PackedScene" uid="uid://bymmwm57ure34" path="res://scenes/medium_meteor.tscn" id="4_fpq8u"]
 [ext_resource type="PackedScene" uid="uid://bunsdh1flr7la" path="res://scenes/meteor.tscn" id="4_ot7am"]
+[ext_resource type="Texture2D" uid="uid://kc5tv8fkq4v8" path="res://assets/kenney_space-shooter-redux/Backgrounds/black.png" id="4_sip4m"]
 [ext_resource type="PackedScene" uid="uid://de0fsajx48dm3" path="res://scenes/hud.tscn" id="4_ulxub"]
 [ext_resource type="PackedScene" uid="uid://c1gh84cntvhbp" path="res://scenes/game_over_screen.tscn" id="5_c0evw"]
+[ext_resource type="Texture2D" uid="uid://c66d2e5cvb6rv" path="res://assets/kenney_space-shooter-redux/Bonus/bitmap.png" id="8_55s28"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vcr1u"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(270, 1, 0)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_wcxds")
 enemy_scenes = Array[PackedScene]([ExtResource("4_ot7am"), ExtResource("4_fpq8u")])
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 960)
+
+[node name="Stars" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+texture = ExtResource("4_sip4m")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 540, 960)
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
@@ -31,5 +57,16 @@ position = Vector2(270, 850)
 [node name="LaserContainer" type="Node2D" parent="."]
 
 [node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(270, -50)
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_vcr1u")
+texture = ExtResource("8_55s28")
+lifetime = 1.25
+preprocess = 5.0
+trail_lifetime = 0.02
+trail_sections = 2
+trail_section_subdivisions = 1
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
