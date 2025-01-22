@@ -10,6 +10,7 @@ radius = 44.2832
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_vfb63")
+speed = 200
 points = 30
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

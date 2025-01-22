@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://fmo7oab03nlt" path="res://assets/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_med1.png" id="2_yyrt5"]
 
 [node name="Meteor" instance=ExtResource("1_lgfb5")]
-speed = 280
+speed = 400
 hp = 1
 points = 10
 

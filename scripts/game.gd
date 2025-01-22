@@ -64,10 +64,10 @@ func _process(delta):
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 	
-	if spawn_timer.wait_time > 0.5:
-		spawn_timer.wait_time -= delta * 0.005
-	elif spawn_timer.wait_time < 0.5:
-		spawn_timer.wait_time = 0.5
+	if spawn_timer.wait_time > 0.4:
+		spawn_timer.wait_time -= delta * 0.02
+	elif spawn_timer.wait_time < 0.4:
+		spawn_timer.wait_time = 0.4
 	
 	parallax_bg.scroll_offset.y += delta * scroll_speed
 	
