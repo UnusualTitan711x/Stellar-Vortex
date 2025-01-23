@@ -17,6 +17,9 @@ var player = null
 @onready var laser_sound_2 = $SFX/LaserSound2
 @onready var hit_sound = $SFX/HitSound
 @onready var explode_sound = $SFX/ExplodeSound
+@onready var powerup_sound = $SFX/PowerUpSound
+@onready var heart_up_sound = $SFX/HeartUpSound
+@onready var player_damage_sound = $SFX/PlayerDamageSound
 
 # This takes away the hassle of going into the script somwehere and updating the display
 # This does it automatically. Cool
@@ -102,6 +105,7 @@ func _on_player_laser_shot(laser_scene, location):
 	laser_container.add_child(laser)
 
 func _on_heart_up():
+	heart_up_sound.play()
 	lives += 1
 
 func _on_enemy_spawn_timer_timeout() -> void:
@@ -129,6 +133,7 @@ func _on_player_killed():
 	game_over_screen.visible = true
 
 func _on_player_damaged():
+	player_damage_sound.play()
 	lives = lives - 1
 	if lives <= 0:
 		player.die()
@@ -156,6 +161,7 @@ func _on_power_up_timer_timeout() -> void:
 	powerup_container.add_child(powerup)
 
 func _on_restore_default(attribute):
+	powerup_sound.play()
 	if attribute == "fire_rate":
 		await get_tree().create_timer(powerup_duration).timeout
 		if player != null:

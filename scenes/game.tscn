@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://6eskilvv7o4y"]
+[gd_scene load_steps=22 format=3 uid="uid://6eskilvv7o4y"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_wcxds"]
 [ext_resource type="PackedScene" uid="uid://b07gbbjojviw7" path="res://scenes/player.tscn" id="2_dygiw"]
@@ -9,14 +9,17 @@
 [ext_resource type="Texture2D" uid="uid://kc5tv8fkq4v8" path="res://assets/kenney_space-shooter-redux/Backgrounds/black.png" id="4_sip4m"]
 [ext_resource type="PackedScene" uid="uid://de0fsajx48dm3" path="res://scenes/hud.tscn" id="4_ulxub"]
 [ext_resource type="PackedScene" uid="uid://c1gh84cntvhbp" path="res://scenes/game_over_screen.tscn" id="5_c0evw"]
-[ext_resource type="AudioStream" uid="uid://svh5vkmdl6yo" path="res://assets/kenney_space-shooter-redux/Bonus/hitHurt.wav" id="5_oaca7"]
 [ext_resource type="PackedScene" uid="uid://cjvg4qbt0sb41" path="res://scenes/fire_rate_powerup.tscn" id="5_qjay8"]
-[ext_resource type="AudioStream" uid="uid://b2fw0ptvfsoco" path="res://assets/kenney_space-shooter-redux/Bonus/explosionCrunch_000.ogg" id="6_6erkd"]
 [ext_resource type="PackedScene" uid="uid://rxnpd3wv73t3" path="res://scenes/movement_powerup.tscn" id="6_tf854"]
 [ext_resource type="PackedScene" uid="uid://0iufi1hfsyvf" path="res://scenes/shield_powerup.tscn" id="7_avk4c"]
 [ext_resource type="PackedScene" uid="uid://craty3vd8cyur" path="res://scenes/heart_up.tscn" id="8_0yvlq"]
 [ext_resource type="Texture2D" uid="uid://c66d2e5cvb6rv" path="res://assets/kenney_space-shooter-redux/Bonus/bitmap.png" id="8_55s28"]
+[ext_resource type="AudioStream" uid="uid://cm44ioutf163s" path="res://assets/kenney_space-shooter-redux/Bonus/hitHurt2.wav" id="11_ntfye"]
 [ext_resource type="PackedScene" uid="uid://dt8trj4lflmnx" path="res://scenes/enemy_spaceship.tscn" id="12_3eo8v"]
+[ext_resource type="AudioStream" uid="uid://ge8nk6p2cra6" path="res://assets/kenney_space-shooter-redux/Bonus/explosion.wav" id="12_7svoe"]
+[ext_resource type="AudioStream" uid="uid://c7bdlw8yadp2o" path="res://assets/kenney_space-shooter-redux/Bonus/powerUp.wav" id="12_yvfjq"]
+[ext_resource type="AudioStream" uid="uid://cefrodfkbo42w" path="res://assets/kenney_space-shooter-redux/Bonus/explosion2.wav" id="13_0pmqv"]
+[ext_resource type="AudioStream" uid="uid://opjqyt4wj431" path="res://assets/kenney_space-shooter-redux/Bonus/heartUp.wav" id="13_la5cw"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vcr1u"]
 particle_flag_disable_z = true
@@ -45,10 +48,19 @@ stream = ExtResource("4_7x2ai")
 stream = ExtResource("4_llk47")
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource("5_oaca7")
+stream = ExtResource("11_ntfye")
+
+[node name="PowerUpSound" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("12_yvfjq")
+
+[node name="HeartUpSound" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("13_la5cw")
 
 [node name="ExplodeSound" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource("6_6erkd")
+stream = ExtResource("12_7svoe")
+
+[node name="PlayerDamageSound" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("13_0pmqv")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -78,7 +90,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="PowerUpTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 12.0
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource("2_dygiw")]

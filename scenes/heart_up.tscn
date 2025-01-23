@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://scripts/heart_up.gd" id="2_yplo7"]
 
 [node name="PowerUp" instance=ExtResource("1_w1bjo")]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("2_yplo7")
 
 [node name="Sprite2D" parent="." index="0"]
