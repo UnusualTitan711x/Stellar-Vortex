@@ -26,5 +26,5 @@ func take_damage(amount):
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.die()
+		body.take_damage()
 		queue_free()

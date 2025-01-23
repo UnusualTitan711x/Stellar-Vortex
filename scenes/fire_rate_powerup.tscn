@@ -1,11 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://cjvg4qbt0sb41"]
 
 [ext_resource type="PackedScene" uid="uid://db8ijx8h43mi0" path="res://scenes/base_power_up.tscn" id="1_bjeh6"]
-[ext_resource type="Texture2D" uid="uid://cew6o24qepytw" path="res://assets/kenney_space-shooter-redux/PNG/Power-ups/powerupBlue_bolt.png" id="2_1kfug"]
 [ext_resource type="Script" path="res://scripts/fire_rate_up.gd" id="2_evsso"]
+[ext_resource type="Texture2D" uid="uid://bmgs1xl454820" path="res://assets/kenney_space-shooter-redux/PNG/Power-ups/pill_red.png" id="3_nvt7f"]
 
 [node name="PowerUp" instance=ExtResource("1_bjeh6")]
 script = ExtResource("2_evsso")
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_1kfug")
+scale = Vector2(1.335, 1.335)
+texture = ExtResource("3_nvt7f")

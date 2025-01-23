@@ -25,6 +25,11 @@ var score := 0:
 		score = value
 		hud.score = score 
 
+@export var lives := 3:
+	set(value):
+		lives = value
+		hud.lives = lives
+
 var high_score
 var spawn_points
 var scroll_speed = 100
@@ -49,6 +54,7 @@ func _ready() -> void:
 	
 	# Whenever I set the score, it always take the formatting I made when creating score. Nice!
 	score = 0
+	# lives = 3
 	
 	spawn_points = s_point_container.get_children()
 	print(spawn_points.size)
@@ -63,6 +69,8 @@ func _ready() -> void:
 	
 	player.laser_shot.connect(_on_player_laser_shot)
 	player.killed.connect(_on_player_killed)
+	player.damaged.connect(_on_player_damaged)
+	player.heart_up.connect(_on_heart_up)
 
 func save_game():
 	# Opens a file for writing, creates one if it doesn't exist
@@ -93,6 +101,8 @@ func _on_player_laser_shot(laser_scene, location):
 	laser.global_position = location
 	laser_container.add_child(laser)
 
+func _on_heart_up():
+	lives += 1
 
 func _on_enemy_spawn_timer_timeout() -> void:
 	var enemy = meteor_scenes.pick_random().instantiate()
@@ -117,6 +127,11 @@ func _on_player_killed():
 	save_game()
 	await get_tree().create_timer(1).timeout
 	game_over_screen.visible = true
+
+func _on_player_damaged():
+	lives = lives - 1
+	if lives <= 0:
+		player.die()
 
 
 func _on_spaceship_spawn_timer_timeout() -> void:

@@ -2,9 +2,10 @@ class_name Player extends CharacterBody2D
 
 @export var speed = 300
 @export var fire_rate := 0.25
-@export var lifes = 1
 
 signal killed
+signal damaged
+signal heart_up
 
 # In a signal like laser_shot(a, b), a and b are like information you want passed with the seignal
 signal laser_shot(laser_scene, location)
@@ -41,7 +42,10 @@ func _physics_process(delta: float) -> void:
 
 func shoot():
 	laser_shot.emit(laser_scene, muzzle.global_position)
-	
+
+func take_damage():
+	damaged.emit()
+
 func die():
 	killed.emit()
 	queue_free()

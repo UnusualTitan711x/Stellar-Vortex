@@ -4,3 +4,7 @@ extends Control
 	# Here is how to make object specific functions. Make things easier down the road. Nice
 	set(value):
 		score.text = "Score: " + str(value)
+
+@onready var lives = $Lives:
+	set(value):
+		lives.text = str(value)
