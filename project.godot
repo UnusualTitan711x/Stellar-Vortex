@@ -68,3 +68,5 @@ shoot={
 2d_physics/layer_1="player"
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="laser"
+2d_physics/layer_4="powerup"
+2d_physics/layer_5="shield"

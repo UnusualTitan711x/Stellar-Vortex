@@ -6,6 +6,7 @@ var player = null
 @onready var bullet_container = $LaserContainerE
 @onready var enemy_container = $EnemyContainer
 @onready var s_point_container = $SpawnPointContainer
+@onready var powerup_container = $PowerupContainer
 @onready var spawn_timer = $EnemySpawnTimer
 @onready var hud = $UILayer/HUD
 @onready var game_over_screen = $UILayer/GameOverScreen
@@ -17,18 +18,22 @@ var player = null
 @onready var hit_sound = $SFX/HitSound
 @onready var explode_sound = $SFX/ExplodeSound
 
+# This takes away the hassle of going into the script somwehere and updating the display
+# This does it automatically. Cool
 var score := 0:
 	set(value):
 		score = value
 		hud.score = score 
+
 var high_score
 var spawn_points
 var scroll_speed = 100
-# This takes away the hassle of going into the script somwehere and updating the display
-# This does it automatically. Cool
+
+@export var powerup_duration = 5
 
 @export var meteor_scenes: Array[PackedScene] = []
 @export var enemy_scenes: Array[PackedScene] = []
+@export var powerup_scenes: Array[PackedScene] = []
 
 # _ready() is called at the start of the game.
 func _ready() -> void:
@@ -41,7 +46,6 @@ func _ready() -> void:
 	else:
 		high_score = 0
 		save_game()
-	
 	
 	# Whenever I set the score, it always take the formatting I made when creating score. Nice!
 	score = 0
@@ -73,10 +77,10 @@ func _process(delta):
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 	
-	if spawn_timer.wait_time > 0.4:
-		spawn_timer.wait_time -= delta * 0.03
-	elif spawn_timer.wait_time < 0.4:
-		spawn_timer.wait_time = 0.4
+	if spawn_timer.wait_time > 0.6:
+		spawn_timer.wait_time -= delta * 0.01
+	elif spawn_timer.wait_time < 0.6:
+		spawn_timer.wait_time = 0.6
 	
 	parallax_bg.scroll_offset.y += delta * scroll_speed
 	
@@ -128,3 +132,26 @@ func _on_enemy_bullet_shot(bullet_scene, location):
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
 	bullet_container.add_child(bullet)
+
+
+func _on_power_up_timer_timeout() -> void:
+	var powerup = powerup_scenes.pick_random().instantiate()
+	powerup.global_position = Vector2(randf_range(30, 510), -20)
+	powerup.restore_defaults.connect(_on_restore_default)
+	powerup_container.add_child(powerup)
+
+func _on_restore_default(attribute):
+	if attribute == "fire_rate":
+		await get_tree().create_timer(powerup_duration).timeout
+		if player != null:
+			player.fire_rate = 0.25
+	elif attribute == "speed":
+		await get_tree().create_timer(powerup_duration).timeout
+		if player != null:
+			player.speed = 300
+	elif attribute == "shield":
+		await get_tree().create_timer(powerup_duration).timeout
+		if player != null:
+			var shield = player.get_node("Shield")
+			if shield != null:
+				shield.queue_free()

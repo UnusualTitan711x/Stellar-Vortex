@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 
 @export var speed = 300
 @export var fire_rate := 0.25
+@export var lifes = 1
 
 signal killed
 

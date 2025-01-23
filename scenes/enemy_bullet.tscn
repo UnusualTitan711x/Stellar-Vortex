@@ -8,7 +8,7 @@ radius = 20.025
 
 [node name="EnemyBullet" type="Area2D"]
 scale = Vector2(0.6, 0.6)
-collision_layer = 4
+collision_layer = 2
 script = ExtResource("1_tdml0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

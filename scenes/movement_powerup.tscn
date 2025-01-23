@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://rxnpd3wv73t3"]
+
+[ext_resource type="PackedScene" uid="uid://db8ijx8h43mi0" path="res://scenes/base_power_up.tscn" id="1_lyio2"]
+[ext_resource type="Script" path="res://scripts/movement_powerup.gd" id="2_2bmwo"]
+[ext_resource type="Texture2D" uid="uid://g75yofk7xa7k" path="res://assets/kenney_space-shooter-redux/PNG/Power-ups/bold_silver.png" id="2_q17xj"]
+
+[node name="PowerUp" instance=ExtResource("1_lyio2")]
+script = ExtResource("2_2bmwo")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_q17xj")
+
+[node name="CollisionShape2D" parent="." index="1"]
+scale = Vector2(0.785, 0.785)

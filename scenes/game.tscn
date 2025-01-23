@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://6eskilvv7o4y"]
+[gd_scene load_steps=18 format=3 uid="uid://6eskilvv7o4y"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_wcxds"]
 [ext_resource type="PackedScene" uid="uid://b07gbbjojviw7" path="res://scenes/player.tscn" id="2_dygiw"]
@@ -10,7 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://de0fsajx48dm3" path="res://scenes/hud.tscn" id="4_ulxub"]
 [ext_resource type="PackedScene" uid="uid://c1gh84cntvhbp" path="res://scenes/game_over_screen.tscn" id="5_c0evw"]
 [ext_resource type="AudioStream" uid="uid://svh5vkmdl6yo" path="res://assets/kenney_space-shooter-redux/Bonus/hitHurt.wav" id="5_oaca7"]
+[ext_resource type="PackedScene" uid="uid://cjvg4qbt0sb41" path="res://scenes/fire_rate_powerup.tscn" id="5_qjay8"]
 [ext_resource type="AudioStream" uid="uid://b2fw0ptvfsoco" path="res://assets/kenney_space-shooter-redux/Bonus/explosionCrunch_000.ogg" id="6_6erkd"]
+[ext_resource type="PackedScene" uid="uid://rxnpd3wv73t3" path="res://scenes/movement_powerup.tscn" id="6_tf854"]
+[ext_resource type="PackedScene" uid="uid://0iufi1hfsyvf" path="res://scenes/shield_powerup.tscn" id="7_avk4c"]
 [ext_resource type="Texture2D" uid="uid://c66d2e5cvb6rv" path="res://assets/kenney_space-shooter-redux/Bonus/bitmap.png" id="8_55s28"]
 [ext_resource type="PackedScene" uid="uid://dt8trj4lflmnx" path="res://scenes/enemy_spaceship.tscn" id="12_3eo8v"]
 
@@ -30,6 +33,7 @@ scale_max = 0.5
 script = ExtResource("1_wcxds")
 meteor_scenes = Array[PackedScene]([ExtResource("4_fpq8u"), ExtResource("4_ot7am")])
 enemy_scenes = Array[PackedScene]([ExtResource("12_3eo8v")])
+powerup_scenes = Array[PackedScene]([ExtResource("5_qjay8"), ExtResource("6_tf854"), ExtResource("7_avk4c")])
 
 [node name="SFX" type="Node" parent="."]
 
@@ -72,6 +76,10 @@ autostart = true
 wait_time = 10.0
 autostart = true
 
+[node name="PowerUpTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [node name="Player" parent="." instance=ExtResource("2_dygiw")]
 position = Vector2(270, 850)
 
@@ -79,6 +87,8 @@ position = Vector2(270, 850)
 position = Vector2(270, 850)
 
 [node name="LaserContainer" type="Node2D" parent="."]
+
+[node name="PowerupContainer" type="Node2D" parent="."]
 
 [node name="LaserContainerE" type="Node2D" parent="."]
 
@@ -117,3 +127,4 @@ position = Vector2(498, -20)
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="SpaceshipSpawnTimer" to="." method="_on_spaceship_spawn_timer_timeout"]
+[connection signal="timeout" from="PowerUpTimer" to="." method="_on_power_up_timer_timeout"]
