@@ -90,7 +90,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="PowerUpTimer" type="Timer" parent="."]
-wait_time = 12.0
+wait_time = 18.0
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource("2_dygiw")]

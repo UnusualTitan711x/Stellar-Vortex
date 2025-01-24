@@ -28,7 +28,7 @@ var score := 0:
 		score = value
 		hud.score = score 
 
-@export var lives := 3:
+var lives := 3:
 	set(value):
 		lives = value
 		hud.lives = lives
@@ -106,6 +106,7 @@ func _on_player_laser_shot(laser_scene, location):
 
 func _on_heart_up():
 	heart_up_sound.play()
+	hud.powerup_text = "heart ++"
 	lives += 1
 
 func _on_enemy_spawn_timer_timeout() -> void:
@@ -163,14 +164,17 @@ func _on_power_up_timer_timeout() -> void:
 func _on_restore_default(attribute):
 	powerup_sound.play()
 	if attribute == "fire_rate":
+		hud.powerup_text = "fire rate ++"
 		await get_tree().create_timer(powerup_duration).timeout
 		if player != null:
 			player.fire_rate = 0.25
 	elif attribute == "speed":
+		hud.powerup_text = "movement ++"
 		await get_tree().create_timer(powerup_duration).timeout
 		if player != null:
 			player.speed = 300
 	elif attribute == "shield":
+		hud.powerup_text = "shield ++"
 		await get_tree().create_timer(powerup_duration).timeout
 		if player != null:
 			var shield = player.get_node("Shield")
