@@ -10,6 +10,7 @@ var player = null
 @onready var spawn_timer = $EnemySpawnTimer
 @onready var hud = $UILayer/HUD
 @onready var game_over_screen = $UILayer/GameOverScreen
+@onready var pause_menu = $UILayer/PauseMenu
 @onready var parallax_bg = $ParallaxBackground
 @onready var ss_timer = $SpaceshipSpawnTimer
 
@@ -37,6 +38,8 @@ var high_score
 var spawn_points
 var scroll_speed = 100
 
+var paused = false
+
 @export var powerup_duration = 5
 
 @export var meteor_scenes: Array[PackedScene] = []
@@ -57,7 +60,6 @@ func _ready() -> void:
 	
 	# Whenever I set the score, it always take the formatting I made when creating score. Nice!
 	score = 0
-	# lives = 3
 	
 	spawn_points = s_point_container.get_children()
 	print(spawn_points.size)
@@ -83,8 +85,11 @@ func save_game():
 
 # Process works every frame. Similar to Update() in Unity
 func _process(delta):
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
+	if Input.is_action_just_pressed("pause") and !game_over_screen.visible:
+		if paused == false:
+			pause_game()
+		else:
+			pause_game()
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 	
@@ -97,6 +102,16 @@ func _process(delta):
 	
 	if parallax_bg.scroll_offset.y >= 960:
 		parallax_bg.scroll_offset.y = 0
+
+func pause_game():
+	get_tree().paused = true
+	paused = true
+	pause_menu.show()
+
+func resume_game():
+	get_tree().paused = false
+	paused = false
+	pause_menu.hide()
 
 func _on_player_laser_shot(laser_scene, location):
 	laser_sound.play()

@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://de0fsajx48dm3"]
+[gd_scene load_steps=7 format=3 uid="uid://de0fsajx48dm3"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_6q7gl"]
 [ext_resource type="FontFile" uid="uid://dgooqrs37y3ro" path="res://assets/kenney_space-shooter-redux/Bonus/kenvector_future.ttf" id="2_ye80m"]
 [ext_resource type="Texture2D" uid="uid://w8sebownr5n4" path="res://assets/kenney_space-shooter-redux/Bonus/heart.png" id="3_stfxw"]
+[ext_resource type="Texture2D" uid="uid://dq8ds5xke0ue7" path="res://assets/kenney_space-shooter-redux/Bonus/pause.png" id="4_c1m66"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x8r83"]
 font = ExtResource("2_ye80m")
-font_size = 48
+font_size = 44
 
 [sub_resource type="LabelSettings" id="LabelSettings_x8t7m"]
 font = ExtResource("2_ye80m")
@@ -25,7 +26,8 @@ script = ExtResource("1_6q7gl")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 23.0
+offset_top = 62.0
+offset_bottom = 116.0
 grow_horizontal = 2
 text = "SCORE: 00000"
 label_settings = SubResource("LabelSettings_x8r83")
@@ -72,3 +74,16 @@ vertical_alignment = 1
 position = Vector2(447, 915)
 scale = Vector2(0.0664062, 0.0664062)
 texture = ExtResource("3_stfxw")
+
+[node name="Pause" type="Button" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 20.0
+offset_right = 61.0
+offset_bottom = 57.0
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Pause"]
+scale = Vector2(0.0722656, 0.0722656)
+texture = ExtResource("4_c1m66")
+centered = false

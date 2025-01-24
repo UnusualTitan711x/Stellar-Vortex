@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3y5guwtgaqtf"]
+
+[ext_resource type="Texture2D" uid="uid://kc5tv8fkq4v8" path="res://assets/kenney_space-shooter-redux/Backgrounds/black.png" id="1_ef7mj"]
+[ext_resource type="Texture2D" uid="uid://c66d2e5cvb6rv" path="res://assets/kenney_space-shooter-redux/Bonus/bitmap.png" id="2_l7q76"]
+[ext_resource type="PackedScene" uid="uid://bwbkhnk6dcv1h" path="res://scenes/start_menu_screen.tscn" id="3_aqnmg"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wxlh6"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(270, 1, 0)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+
+[node name="StartMenu" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 960)
+
+[node name="Stars" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+texture = ExtResource("1_ef7mj")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 540, 960)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(270, -50)
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_wxlh6")
+texture = ExtResource("2_l7q76")
+lifetime = 1.25
+preprocess = 5.0
+trail_lifetime = 0.02
+trail_sections = 2
+trail_section_subdivisions = 1
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="StartMenuScreen" parent="UILayer" instance=ExtResource("3_aqnmg")]

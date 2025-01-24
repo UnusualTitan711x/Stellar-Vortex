@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=3 uid="uid://clu452npx7e0q"]
+
+[ext_resource type="FontFile" uid="uid://dgooqrs37y3ro" path="res://assets/kenney_space-shooter-redux/Bonus/kenvector_future.ttf" id="1_cig5c"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_mba1q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fohwv"]
+bg_color = Color(0.160784, 0.533333, 0.839216, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_io4ml"]
+font = ExtResource("1_cig5c")
+font_size = 48
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mba1q")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.521569)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 46.0
+offset_top = 291.0
+offset_right = 494.0
+offset_bottom = 669.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fohwv")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.0
+offset_top = -62.0
+offset_right = 141.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Resume" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_cig5c")
+theme_override_font_sizes/font_size = 30
+text = "RESUME"
+
+[node name="MainMenu" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_cig5c")
+theme_override_font_sizes/font_size = 30
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_cig5c")
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 43.0
+offset_bottom = 101.0
+grow_horizontal = 2
+text = "Pause Menu"
+label_settings = SubResource("LabelSettings_io4ml")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

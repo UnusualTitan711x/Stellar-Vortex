@@ -1,0 +1,169 @@
+[gd_scene load_steps=18 format=3 uid="uid://bwbkhnk6dcv1h"]
+
+[ext_resource type="Texture2D" uid="uid://c4so0lf8d4ved" path="res://assets/kenney_space-shooter-redux/PNG/Enemies/enemyRed1.png" id="1_02bf3"]
+[ext_resource type="FontFile" uid="uid://dgooqrs37y3ro" path="res://assets/kenney_space-shooter-redux/Bonus/kenvector_future.ttf" id="1_7tyeh"]
+[ext_resource type="Script" path="res://scripts/start_menu_screen.gd" id="1_c1em6"]
+[ext_resource type="Texture2D" uid="uid://kt0c4fffx8dp" path="res://assets/kenney_space-shooter-redux/PNG/playerShip1_blue.png" id="2_dpa6o"]
+[ext_resource type="Texture2D" uid="uid://dtq22hco54tj0" path="res://assets/kenney_space-shooter-redux/PNG/Lasers/laserRed01.png" id="3_p8unt"]
+[ext_resource type="Texture2D" uid="uid://cfdg0sopdtnm" path="res://assets/kenney_space-shooter-redux/PNG/Enemies/enemyRed2.png" id="4_g8eui"]
+[ext_resource type="Texture2D" uid="uid://b8ttx1ar2gsam" path="res://assets/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_big1.png" id="5_u2guy"]
+[ext_resource type="Texture2D" uid="uid://bfojfj10fqx8m" path="res://assets/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_small2.png" id="6_gnm2f"]
+[ext_resource type="Texture2D" uid="uid://d2cfjmrhufdsd" path="res://assets/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_tiny1.png" id="7_5ddhy"]
+[ext_resource type="Texture2D" uid="uid://brvdg15gvyunt" path="res://assets/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_med3.png" id="8_lvnlv"]
+[ext_resource type="Texture2D" uid="uid://cuabv7f5kte7e" path="res://assets/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_big2.png" id="9_by1sy"]
+[ext_resource type="Texture2D" uid="uid://dshu8jtqh4qr7" path="res://assets/kenney_space-shooter-redux/PNG/Effects/fire00.png" id="10_06u56"]
+[ext_resource type="Texture2D" uid="uid://3kcfxetlxrq0" path="res://assets/kenney_space-shooter-redux/PNG/Lasers/laserRed10.png" id="11_nnwxg"]
+[ext_resource type="Texture2D" uid="uid://de3mexywberol" path="res://assets/kenney_space-shooter-redux/PNG/Lasers/laserRed11.png" id="12_7agn5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u27ql"]
+font = ExtResource("1_7tyeh")
+font_size = 68
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjlyw"]
+bg_color = Color(0.160784, 0.533333, 0.839216, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muges"]
+bg_color = Color(0.804033, 0, 0.242918, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 10
+
+[node name="StartMenuScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c1em6")
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="EnemyRed1" type="Sprite2D" parent="Sprites"]
+position = Vector2(462, 293.406)
+rotation = 1.0472
+scale = Vector2(1.72035, 1.72035)
+texture = ExtResource("1_02bf3")
+
+[node name="PlayerShip1Blue" type="Sprite2D" parent="Sprites"]
+position = Vector2(52.9266, 551.177)
+rotation = 1.0472
+scale = Vector2(2.16557, 2.16557)
+texture = ExtResource("2_dpa6o")
+
+[node name="LaserRed01" type="Sprite2D" parent="Sprites"]
+position = Vector2(193, 471)
+rotation = 1.0472
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_p8unt")
+
+[node name="EnemyRed2" type="Sprite2D" parent="Sprites"]
+position = Vector2(515.658, 632.156)
+rotation = 1.8326
+scale = Vector2(1.36101, 1.36101)
+texture = ExtResource("4_g8eui")
+
+[node name="MeteorBrownBig1" type="Sprite2D" parent="Sprites"]
+position = Vector2(25, 244.406)
+texture = ExtResource("5_u2guy")
+
+[node name="MeteorBrownSmall2" type="Sprite2D" parent="Sprites"]
+position = Vector2(214, 360.406)
+texture = ExtResource("6_gnm2f")
+
+[node name="MeteorBrownTiny1" type="Sprite2D" parent="Sprites"]
+position = Vector2(342, 630.406)
+texture = ExtResource("7_5ddhy")
+
+[node name="MeteorBrownMed3" type="Sprite2D" parent="Sprites"]
+position = Vector2(394, 418.406)
+texture = ExtResource("8_lvnlv")
+
+[node name="MeteorBrownBig2" type="Sprite2D" parent="Sprites"]
+position = Vector2(218, 649)
+texture = ExtResource("9_by1sy")
+
+[node name="Fire00" type="Sprite2D" parent="Sprites"]
+position = Vector2(385, 337)
+rotation = 1.0472
+scale = Vector2(1, 2.48707)
+texture = ExtResource("10_06u56")
+
+[node name="Fire01" type="Sprite2D" parent="Sprites"]
+position = Vector2(423, 609)
+rotation = 1.8326
+scale = Vector2(1, 2.48707)
+texture = ExtResource("10_06u56")
+
+[node name="LaserRed10" type="Sprite2D" parent="Sprites"]
+position = Vector2(339, 363)
+rotation = -0.523599
+texture = ExtResource("11_nnwxg")
+
+[node name="LaserRed11" type="Sprite2D" parent="Sprites"]
+position = Vector2(371, 592)
+rotation = 0.261799
+texture = ExtResource("12_7agn5")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_right = 270.0
+offset_bottom = 229.0
+grow_horizontal = 2
+text = "STELLAR
+VORTEX"
+label_settings = SubResource("LabelSettings_u27ql")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 131.0
+offset_top = -206.0
+offset_right = -133.0
+offset_bottom = -142.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_7tyeh")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_sjlyw")
+text = "Play"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 131.0
+offset_top = -114.0
+offset_right = -133.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_7tyeh")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_muges")
+text = "Quit"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
