@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://6eskilvv7o4y"]
+[gd_scene load_steps=25 format=3 uid="uid://6eskilvv7o4y"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_wcxds"]
 [ext_resource type="PackedScene" uid="uid://b07gbbjojviw7" path="res://scenes/player.tscn" id="2_dygiw"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://0iufi1hfsyvf" path="res://scenes/shield_powerup.tscn" id="7_avk4c"]
 [ext_resource type="PackedScene" uid="uid://craty3vd8cyur" path="res://scenes/heart_up.tscn" id="8_0yvlq"]
 [ext_resource type="Texture2D" uid="uid://c66d2e5cvb6rv" path="res://assets/kenney_space-shooter-redux/Bonus/bitmap.png" id="8_55s28"]
+[ext_resource type="PackedScene" uid="uid://bkfyurrmvgau5" path="res://scenes/x_2_laser.tscn" id="10_xufjl"]
 [ext_resource type="AudioStream" uid="uid://cm44ioutf163s" path="res://assets/kenney_space-shooter-redux/Bonus/hitHurt2.wav" id="11_ntfye"]
 [ext_resource type="PackedScene" uid="uid://dt8trj4lflmnx" path="res://scenes/enemy_spaceship.tscn" id="12_3eo8v"]
 [ext_resource type="AudioStream" uid="uid://ge8nk6p2cra6" path="res://assets/kenney_space-shooter-redux/Bonus/explosion.wav" id="12_7svoe"]
@@ -37,10 +38,11 @@ scale_max = 0.5
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_wcxds")
+powerup_duration = 8
 boss_spawn_score = 1700
 meteor_scenes = Array[PackedScene]([ExtResource("4_fpq8u"), ExtResource("4_ot7am")])
 enemy_scenes = Array[PackedScene]([ExtResource("12_3eo8v"), ExtResource("5_p70tw")])
-powerup_scenes = Array[PackedScene]([ExtResource("5_qjay8"), ExtResource("6_tf854"), ExtResource("7_avk4c"), ExtResource("8_0yvlq")])
+powerup_scenes = Array[PackedScene]([ExtResource("5_qjay8"), ExtResource("6_tf854"), ExtResource("7_avk4c"), ExtResource("8_0yvlq"), ExtResource("10_xufjl")])
 
 [node name="SFX" type="Node" parent="."]
 

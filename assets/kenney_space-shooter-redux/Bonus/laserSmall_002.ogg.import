@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/laserSmall_002.ogg-2a84f43b1ddeb8faea7f47685c
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

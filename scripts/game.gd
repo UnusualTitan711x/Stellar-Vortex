@@ -205,6 +205,10 @@ func _on_restore_default(attribute):
 			var shield = player.get_node("Shield")
 			if shield != null:
 				shield.queue_free()
+	elif attribute == "2x":
+		if player != null:
+			await get_tree().create_timer(powerup_duration).timeout
+			player.laser_scene = preload("res://scenes/laser.tscn")
 
 func spawn_boss():
 	print("Boss spawned!")
