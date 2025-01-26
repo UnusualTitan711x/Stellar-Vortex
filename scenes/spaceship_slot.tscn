@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://i2p1b2tyu1np"]
+
+[ext_resource type="Texture2D" uid="uid://kt0c4fffx8dp" path="res://assets/kenney_space-shooter-redux/PNG/playerShip1_blue.png" id="1_r1n3d"]
+[ext_resource type="Script" path="res://scripts/spaceship_slot.gd" id="1_rnv0i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oejgt"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Panel" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.5
+offset_top = -40.5
+offset_right = 40.5
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oejgt")
+script = ExtResource("1_rnv0i")
+
+[node name="Texture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -27.0
+offset_right = 64.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_r1n3d")
+expand_mode = 1

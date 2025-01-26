@@ -68,7 +68,10 @@ func _ready() -> void:
 	score = 0
 	
 	spawn_points = s_point_container.get_children()
-	print(spawn_points.size)
+	
+	var player_path = GlobalData.player_character_path
+	player = load(player_path).instantiate()
+	add_child(player)
 	
 	# This basically makes the player accessible everywhere
 	# Another approach is by doing @onready var player = $Player 
@@ -109,7 +112,7 @@ func _process(delta):
 	if parallax_bg.scroll_offset.y >= 960:
 		parallax_bg.scroll_offset.y = 0
 	
-	if (score > boss_spawn_score and not boss_spawned) or (score > boss_spawn_score * 2 and not boss_spawned):
+	if (score > boss_spawn_score and not boss_spawned):
 		spawn_boss()
 		boss_spawned = true
 
@@ -192,7 +195,7 @@ func _on_restore_default(attribute):
 		hud.powerup_text = "fire rate ++"
 		await get_tree().create_timer(powerup_duration).timeout
 		if player != null:
-			player.fire_rate = 0.25
+			player.fire_rate *= 2
 	elif attribute == "speed":
 		hud.powerup_text = "movement ++"
 		await get_tree().create_timer(powerup_duration).timeout

@@ -15,6 +15,10 @@ run/main_scene="res://scenes/start_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalData="*res://global_data.gd"
+
 [display]
 
 window/size/viewport_width=540
@@ -70,3 +74,7 @@ shoot={
 2d_physics/layer_3="laser"
 2d_physics/layer_4="powerup"
 2d_physics/layer_5="shield"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

@@ -1,0 +1,276 @@
+[gd_scene load_steps=19 format=3 uid="uid://ctqhxvk7yaewl"]
+
+[ext_resource type="Script" path="res://scripts/spaceship_selection_screen.gd" id="1_n0o1s"]
+[ext_resource type="FontFile" uid="uid://dgooqrs37y3ro" path="res://assets/kenney_space-shooter-redux/Bonus/kenvector_future.ttf" id="1_u81au"]
+[ext_resource type="Texture2D" uid="uid://kt0c4fffx8dp" path="res://assets/kenney_space-shooter-redux/PNG/playerShip1_blue.png" id="2_6gbhv"]
+[ext_resource type="PackedScene" uid="uid://i2p1b2tyu1np" path="res://scenes/spaceship_slot.tscn" id="2_12se4"]
+[ext_resource type="Texture2D" uid="uid://djdoeaw5nqk2l" path="res://assets/kenney_space-shooter-redux/PNG/playerShip1_green.png" id="3_k7odc"]
+[ext_resource type="Texture2D" uid="uid://0qot400e6qck" path="res://assets/kenney_space-shooter-redux/PNG/playerShip1_orange.png" id="4_f2ct4"]
+[ext_resource type="Texture2D" uid="uid://cc8psxwvksgkh" path="res://assets/kenney_space-shooter-redux/PNG/playerShip1_red.png" id="5_bdsgm"]
+[ext_resource type="Texture2D" uid="uid://ke3d0cbunui7" path="res://assets/kenney_space-shooter-redux/PNG/playerShip2_blue.png" id="6_vkcnq"]
+[ext_resource type="Texture2D" uid="uid://b3c057jrb6dl8" path="res://assets/kenney_space-shooter-redux/PNG/playerShip2_green.png" id="7_bbvps"]
+[ext_resource type="Texture2D" uid="uid://c3s4xypuir5xm" path="res://assets/kenney_space-shooter-redux/PNG/playerShip2_orange.png" id="8_ng7b3"]
+[ext_resource type="Texture2D" uid="uid://d066nvvw4caks" path="res://assets/kenney_space-shooter-redux/PNG/playerShip2_red.png" id="9_dihjw"]
+[ext_resource type="Texture2D" uid="uid://cd3s85w560omn" path="res://assets/kenney_space-shooter-redux/PNG/playerShip3_blue.png" id="10_n7w85"]
+[ext_resource type="Texture2D" uid="uid://dkcb83edwrwlu" path="res://assets/kenney_space-shooter-redux/PNG/playerShip3_green.png" id="11_efpk2"]
+[ext_resource type="Texture2D" uid="uid://cdep15l4i1adm" path="res://assets/kenney_space-shooter-redux/PNG/playerShip3_orange.png" id="12_kkiss"]
+[ext_resource type="Texture2D" uid="uid://dqedpnm0n6ias" path="res://assets/kenney_space-shooter-redux/PNG/playerShip3_red.png" id="13_4ic2e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u22ht"]
+font = ExtResource("1_u81au")
+font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ywty"]
+bg_color = Color(0.160784, 0.533333, 0.839216, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hbqd"]
+bg_color = Color(0.804033, 0, 0.242918, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 10
+
+[node name="SpaceshipSelectionScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n0o1s")
+
+[node name="Label" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -253.0
+offset_top = 147.0
+offset_right = 258.0
+offset_bottom = 183.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("1_u81au")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=30 freq=10]Choose your spaceship[/wave]"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -251.0
+offset_top = -239.0
+offset_right = 251.0
+offset_bottom = 239.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 160
+
+[node name="SpaceshipType" type="Control" parent="VBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/SpaceshipType"]
+layout_mode = 1
+offset_right = 254.0
+offset_bottom = 27.0
+text = "Galactic Storm"
+label_settings = SubResource("LabelSettings_u22ht")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/SpaceshipType"]
+layout_direction = 2
+layout_mode = 1
+offset_top = 32.0
+offset_right = 461.0
+offset_bottom = 112.0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Panel" parent="VBoxContainer/SpaceshipType/HBoxContainer" instance=ExtResource("2_12se4")]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+character_path = "res://scenes/player_1.tscn"
+spaceship_texture = ExtResource("2_6gbhv")
+
+[node name="Panel2" parent="VBoxContainer/SpaceshipType/HBoxContainer" instance=ExtResource("2_12se4")]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+character_path = "res://scenes/player_1.tscn"
+spaceship_texture = ExtResource("3_k7odc")
+
+[node name="Panel3" parent="VBoxContainer/SpaceshipType/HBoxContainer" instance=ExtResource("2_12se4")]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+character_path = "res://scenes/player_1.tscn"
+spaceship_texture = ExtResource("4_f2ct4")
+
+[node name="Panel4" parent="VBoxContainer/SpaceshipType/HBoxContainer" instance=ExtResource("2_12se4")]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+character_path = "res://scenes/player_1.tscn"
+spaceship_texture = ExtResource("5_bdsgm")
+
+[node name="SpaceshipType2" type="Control" parent="VBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/SpaceshipType2"]
+layout_mode = 1
+offset_right = 254.0
+offset_bottom = 27.0
+text = "Nova Viper"
+label_settings = SubResource("LabelSettings_u22ht")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/SpaceshipType2"]
+layout_direction = 2
+layout_mode = 0
+offset_top = 32.0
+offset_right = 461.0
+offset_bottom = 112.0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Panel" parent="VBoxContainer/SpaceshipType2/HBoxContainer" instance=ExtResource("2_12se4")]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+character_path = "res://scenes/player_2.tscn"
+spaceship_texture = ExtResource("6_vkcnq")
+
+[node name="Panel2" parent="VBoxContainer/SpaceshipType2/HBoxContainer" instance=ExtResource("2_12se4")]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+character_path = "res://scenes/player_2.tscn"
+spaceship_texture = ExtResource("7_bbvps")
+
+[node name="Panel3" parent="VBoxContainer/SpaceshipType2/HBoxContainer" instance=ExtResource("2_12se4")]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+character_path = "res://scenes/player_2.tscn"
+spaceship_texture = ExtResource("8_ng7b3")
+
+[node name="Panel4" parent="VBoxContainer/SpaceshipType2/HBoxContainer" instance=ExtResource("2_12se4")]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+character_path = "res://scenes/player_2.tscn"
+spaceship_texture = ExtResource("9_dihjw")
+
+[node name="SpaceshipType3" type="Control" parent="VBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/SpaceshipType3"]
+layout_mode = 1
+offset_right = 254.0
+offset_bottom = 27.0
+text = "STAR TITAN"
+label_settings = SubResource("LabelSettings_u22ht")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/SpaceshipType3"]
+layout_direction = 2
+layout_mode = 0
+offset_top = 32.0
+offset_right = 461.0
+offset_bottom = 112.0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Panel" parent="VBoxContainer/SpaceshipType3/HBoxContainer" instance=ExtResource("2_12se4")]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+character_path = "res://scenes/player_3.tscn"
+spaceship_texture = ExtResource("10_n7w85")
+
+[node name="Panel2" parent="VBoxContainer/SpaceshipType3/HBoxContainer" instance=ExtResource("2_12se4")]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+character_path = "res://scenes/player_3.tscn"
+spaceship_texture = ExtResource("11_efpk2")
+
+[node name="Panel3" parent="VBoxContainer/SpaceshipType3/HBoxContainer" instance=ExtResource("2_12se4")]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+character_path = "res://scenes/player_3.tscn"
+spaceship_texture = ExtResource("12_kkiss")
+
+[node name="Panel4" parent="VBoxContainer/SpaceshipType3/HBoxContainer" instance=ExtResource("2_12se4")]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+character_path = "res://scenes/player_3.tscn"
+spaceship_texture = ExtResource("13_4ic2e")
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 131.0
+offset_top = -206.0
+offset_right = -133.0
+offset_bottom = -142.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_u81au")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_5ywty")
+text = "Play"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 131.0
+offset_top = -114.0
+offset_right = -133.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_u81au")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_8hbqd")
+text = "Back
+"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

@@ -3,6 +3,9 @@ class_name Player extends CharacterBody2D
 @export var speed = 300
 @export var fire_rate := 0.25
 
+@onready var muzzle = $Muzzle
+@onready var sprite = $Sprite2D
+
 signal killed
 signal damaged
 signal heart_up
@@ -13,9 +16,10 @@ signal laser_shot(laser_scene, location)
 var laser_scene = preload("res://scenes/laser.tscn")
 var laserx2_scene = preload("res://scenes/laser_x2.tscn")
 
-@onready var muzzle = $Muzzle
-
 var shoot_cooldown := false
+
+func _ready() -> void:
+	sprite.texture = GlobalData.player_texture
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("shoot"):

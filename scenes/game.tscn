@@ -1,7 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://6eskilvv7o4y"]
+[gd_scene load_steps=24 format=3 uid="uid://6eskilvv7o4y"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_wcxds"]
-[ext_resource type="PackedScene" uid="uid://b07gbbjojviw7" path="res://scenes/player.tscn" id="2_dygiw"]
 [ext_resource type="AudioStream" uid="uid://bp348y64x5tgu" path="res://assets/kenney_space-shooter-redux/Bonus/laserSmall_002.ogg" id="4_7x2ai"]
 [ext_resource type="PackedScene" uid="uid://bymmwm57ure34" path="res://scenes/medium_meteor.tscn" id="4_fpq8u"]
 [ext_resource type="AudioStream" uid="uid://ck7it7ugqs1gc" path="res://assets/kenney_space-shooter-redux/Bonus/sfx_laser2.ogg" id="4_llk47"]
@@ -104,9 +103,6 @@ autostart = true
 
 [node name="BossSpawnPosition" type="Node2D" parent="."]
 position = Vector2(270, -150)
-
-[node name="Player" parent="." instance=ExtResource("2_dygiw")]
-position = Vector2(270, 850)
 
 [node name="PlayerSpawnPosition" type="Marker2D" parent="."]
 position = Vector2(270, 850)

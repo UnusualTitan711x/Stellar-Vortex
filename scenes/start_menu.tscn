@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3y5guwtgaqtf"]
+[gd_scene load_steps=6 format=3 uid="uid://b3y5guwtgaqtf"]
 
 [ext_resource type="Texture2D" uid="uid://kc5tv8fkq4v8" path="res://assets/kenney_space-shooter-redux/Backgrounds/black.png" id="1_ef7mj"]
 [ext_resource type="Texture2D" uid="uid://c66d2e5cvb6rv" path="res://assets/kenney_space-shooter-redux/Bonus/bitmap.png" id="2_l7q76"]
 [ext_resource type="PackedScene" uid="uid://bwbkhnk6dcv1h" path="res://scenes/start_menu_screen.tscn" id="3_aqnmg"]
+[ext_resource type="PackedScene" uid="uid://ctqhxvk7yaewl" path="res://scenes/spaceship_selection_screen.tscn" id="4_lk7uh"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wxlh6"]
 particle_flag_disable_z = true
@@ -44,3 +45,8 @@ trail_section_subdivisions = 1
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="StartMenuScreen" parent="UILayer" instance=ExtResource("3_aqnmg")]
+
+[node name="SpaceshipSelectionScreen" parent="UILayer" instance=ExtResource("4_lk7uh")]
+visible = false
+
+[editable path="UILayer/StartMenuScreen"]
