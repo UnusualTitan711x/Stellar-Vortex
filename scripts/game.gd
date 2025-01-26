@@ -219,6 +219,7 @@ func spawn_boss():
 	boss_spawn_pos.add_child(boss)
 	boss.global_position = boss_spawn_pos.global_position
 	boss.boss_killed.connect(_on_boss_killed)
+	boss.hit.connect(_on_enemy_hit)
 	
 	for beamer in boss.beamer_scenes: 
 		beamer.bullet_shot.connect(_on_enemy_bullet_shot)
