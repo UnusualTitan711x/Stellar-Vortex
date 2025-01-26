@@ -26,8 +26,7 @@ script = ExtResource("1_6q7gl")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 62.0
-offset_bottom = 116.0
+offset_bottom = 54.0
 grow_horizontal = 2
 text = "SCORE: 00000"
 label_settings = SubResource("LabelSettings_x8r83")
@@ -77,10 +76,10 @@ texture = ExtResource("3_stfxw")
 
 [node name="Pause" type="Button" parent="."]
 layout_mode = 0
-offset_left = 23.0
-offset_top = 20.0
-offset_right = 61.0
-offset_bottom = 57.0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 44.0
+offset_bottom = 42.0
 flat = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Pause"]

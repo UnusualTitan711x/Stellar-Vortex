@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://boe1lq51c1n3"]
+
+[ext_resource type="Script" path="res://scripts/beamer.gd" id="1_kcao0"]
+[ext_resource type="Texture2D" uid="uid://crjlsgjss1hjt" path="res://assets/kenney_space-shooter-redux/PNG/Enemies/enemyRed5.png" id="2_idnyd"]
+
+[node name="Beamer" type="Area2D"]
+scale = Vector2(0.7, 0.7)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_kcao0")
+hp = 6
+points = 50
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_idnyd")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(0, 47)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

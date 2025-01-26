@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://duqdxi3v8v5os"]
+
+[ext_resource type="PackedScene" uid="uid://boe1lq51c1n3" path="res://scenes/beamer.tscn" id="1_iroa6"]
+[ext_resource type="Texture2D" uid="uid://caxtwf4cg0207" path="res://assets/kenney_space-shooter-redux/PNG/Enemies/enemyBlack1.png" id="2_1k8gs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8lwrq"]
+radius = 40.0
+
+[node name="Beamer_2" instance=ExtResource("1_iroa6")]
+independent = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_1k8gs")
+
+[node name="Muzzle" parent="." index="1"]
+position = Vector2(0, 15.7143)
+
+[node name="ShootTimer" parent="." index="2"]
+wait_time = 3.75
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+shape = SubResource("CircleShape2D_8lwrq")

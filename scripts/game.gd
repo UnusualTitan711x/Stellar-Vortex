@@ -13,6 +13,7 @@ var player = null
 @onready var pause_menu = $UILayer/PauseMenu
 @onready var parallax_bg = $ParallaxBackground
 @onready var ss_timer = $SpaceshipSpawnTimer
+@onready var boss_spawn_pos = $BossSpawnPosition
 
 @onready var laser_sound = $SFX/LaserSound
 @onready var laser_sound_2 = $SFX/LaserSound2
@@ -21,6 +22,7 @@ var player = null
 @onready var powerup_sound = $SFX/PowerUpSound
 @onready var heart_up_sound = $SFX/HeartUpSound
 @onready var player_damage_sound = $SFX/PlayerDamageSound
+
 
 # This takes away the hassle of going into the script somwehere and updating the display
 # This does it automatically. Cool
@@ -39,12 +41,16 @@ var spawn_points
 var scroll_speed = 100
 
 var paused = false
+var boss_spawned = false
 
 @export var powerup_duration = 5
+@export var boss_spawn_score = 1000
 
 @export var meteor_scenes: Array[PackedScene] = []
 @export var enemy_scenes: Array[PackedScene] = []
 @export var powerup_scenes: Array[PackedScene] = []
+
+var boss_scene = preload("res://scenes/mothership.tscn")
 
 # _ready() is called at the start of the game.
 func _ready() -> void:
@@ -102,6 +108,10 @@ func _process(delta):
 	
 	if parallax_bg.scroll_offset.y >= 960:
 		parallax_bg.scroll_offset.y = 0
+	
+	if (score > boss_spawn_score and not boss_spawned) or (score > boss_spawn_score * 2 and not boss_spawned):
+		spawn_boss()
+		boss_spawned = true
 
 func pause_game():
 	get_tree().paused = true
@@ -195,3 +205,24 @@ func _on_restore_default(attribute):
 			var shield = player.get_node("Shield")
 			if shield != null:
 				shield.queue_free()
+
+func spawn_boss():
+	print("Boss spawned!")
+	var boss = boss_scene.instantiate()
+	boss_spawn_pos.add_child(boss)
+	boss.global_position = boss_spawn_pos.global_position
+	boss.boss_killed.connect(_on_boss_killed)
+	
+	for beamer in boss.beamer_scenes: 
+		beamer.bullet_shot.connect(_on_enemy_bullet_shot)
+
+func _on_boss_killed(points, boss):
+	for beamer in boss.beamer_scenes:
+		boss.beamer_container.remove_child(beamer)
+		add_child(beamer)
+		beamer.global_position.x += 270
+		print("beamer saved")
+	
+	boss_spawned = false
+	boss.queue_free()
+	

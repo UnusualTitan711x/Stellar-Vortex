@@ -11,6 +11,7 @@ signal heart_up
 signal laser_shot(laser_scene, location)
 
 var laser_scene = preload("res://scenes/laser.tscn")
+var laserx2_scene = preload("res://scenes/laser_x2.tscn")
 
 @onready var muzzle = $Muzzle
 
