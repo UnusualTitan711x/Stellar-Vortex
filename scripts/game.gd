@@ -54,6 +54,8 @@ var boss_scene = preload("res://scenes/mothership.tscn")
 
 # _ready() is called at the start of the game.
 func _ready() -> void:
+	AudioPlayer.play_music_level()
+	
 	# Reads what is in the file into the high_score variable
 	var save_file = FileAccess.open("user://save.data", FileAccess.READ)
 	
@@ -231,6 +233,5 @@ func _on_boss_killed(points, boss):
 		beamer.global_position.x += 270
 		print("beamer saved")
 	
-	boss_spawned = false
 	boss.queue_free()
 	

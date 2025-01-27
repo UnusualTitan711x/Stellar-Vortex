@@ -1,5 +1,8 @@
 extends Control
 
+func _ready() -> void:
+	AudioPlayer.play_music_level()
+
 func _on_play_pressed() -> void:
 	visible = false
 	$"../SpaceshipSelectionScreen".visible = true
