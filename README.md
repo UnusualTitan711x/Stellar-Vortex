@@ -39,7 +39,7 @@
     
 2. **Controls**:
     
-    - **Move**: Use the arrow keys or WASD or the arrow keys to maneuver your spaceship.
+    - **Move**: Use the arrow keys or WASD to maneuver your spaceship.
         
     - **Shoot**: Press the spacebar to fire your weapons.
         
