@@ -2,7 +2,7 @@
 
 ## Overview
 
-**Space Shooter Game** is an exciting arcade-style game where players select different fighting spaceships, each with unique abilities, to battle through various space environments and defeat enemy forces.
+**Stellar Vortex** is an exciting arcade-style game where players select different fighting spaceships to blast through asteroids and defeat enemy forces.
 
 ## Features
 
@@ -39,7 +39,7 @@
     
 2. **Controls**:
     
-    - **Move**: Use the arrow keys or WASD or the arrow keys to maneuver your spaceship.
+    - **Move**: Use the arrow keys or WASD to maneuver your spaceship.
         
     - **Shoot**: Press the spacebar to fire your weapons.
         
